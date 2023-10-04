@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="center">
+        <h1>Short URL</h1>
+            <h3>Paste the URL to be shortened</h3>
+            <form action="/shorturls" method="POST">
+                <input type="url" name="longlink" placeholder="Enter the URL">
+                <button type="submit" onclick="fn()">Shorten URL</button>
+            </form>
+        </div>
+        <table class="hide">
+            <tr>
+                <th>Long Link</th>
+                <th>Short Link</th>
+                <th>Clicks</th>
+            </tr>    
+            <% shorturls.forEach((shorturl) => { %>
+                <tr>
+                    <td><a href="<%= shorturl.longlink %>"><%= shorturl.longlink %></a></td>
+                    <td><a href="<%= shorturl.shortlink %>"><%= shorturl.shortlink %></a></td>
+                    <td><%= shorturl.clicks %></td>
+                </tr> 
+            <% }) %>        
+        </table>
+        <script type="text/javascript">
+            const table = document.querySelector('table')
+            function fn() {
+                table.classList.toggle('hide')
+            }
+        </script>
+</body>
+</html>
